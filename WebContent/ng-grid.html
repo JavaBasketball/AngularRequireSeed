@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html ng-app="app">
+
+  <head>
+    <link data-require="ng-grid@2.0.14" data-semver="2.0.14" rel="stylesheet" href="//cdn.rawgit.com/angular-ui/ng-grid/v2.0.14/ng-grid.css" />
+    <link rel="stylesheet" href="style.css" />
+    <link data-require="bootstrap@3.3.5" data-semver="3.3.5" rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" />
+    <link data-require="angular-strap.libraries@2.1.3" data-semver="2.1.3" rel="stylesheet" href="//mgcrea.github.io/angular-strap/styles/libraries.min.css" />
+    <script data-require="jquery@2.1.4" data-semver="2.1.4" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script data-require="angular.js@1.4.3" data-semver="1.4.3" src="https://code.angularjs.org/1.4.3/angular.js"></script>
+    <script data-require="angular-strap@2.1.3" data-semver="2.1.3" src="//cdn.rawgit.com/mgcrea/angular-strap/v2.1.3/dist/angular-strap.js"></script>
+    <script data-require="angular-strap@2.1.3" data-semver="2.1.3" src="//cdn.rawgit.com/mgcrea/angular-strap/master/dist/angular-strap.tpl.js"></script>
+    <script data-require="ng-grid@2.0.14" data-semver="2.0.14" src="//cdn.rawgit.com/angular-ui/ng-grid/v2.0.14/build/ng-grid.js"></script>
+    <script data-require="ng-grid@2.0.14" data-semver="2.0.14" src="//cdn.rawgit.com/angular-ui/ng-grid/v2.0.14/plugins/ng-grid-flexible-height.js"></script>
+    <script src="script.js"></script>
+  </head>
+
+  <body ng-controller="main">
+    <div class="form-group">
+      <label class="col-sm-3 control-label" for="ds_name">CEO List</label>
+      <button class="btn btn-success" data-animation="am-fade-and-slide-top" data-template="modal_add_staff.html" bs-modal="modal" ng-click="addStaff()">New</button>
+    </div>
+    <div data-ng-grid="gridOptions"></div>
+  </body>
+
+</html>
