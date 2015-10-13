@@ -1,5 +1,5 @@
 /**
- * ¶¨ÒåRequireJSÅäÖÃ
+ * ï¿½ï¿½ï¿½ï¿½RequireJSï¿½ï¿½ï¿½ï¿½
  */
 require.config({
 
@@ -7,6 +7,12 @@ require.config({
         'angular': '../lib/angular/angular',
         'angular-route': '../lib/angular-route/angular-route',
         'domReady': '../lib/requirejs-domready/domReady'
+    },
+    // "map"å‘Šè¯‰RequireJSåœ¨ä»»ä½•æ¨¡å—ä¹‹å‰ï¼Œéƒ½å…ˆè½½å…¥è¿™ä¸ªæ¨¡å—
+    map: {
+    	'*': {
+    		'css': '../lib/require-css\css'
+    	}
     },
     shim: {
         'angular': {
@@ -25,9 +31,9 @@ require.config({
 
 require( [ 
 	    'app',
-	    //×¢Òâ£ºÕâ²»ÊÇTwitter Bootstrap£¬¶øÊÇAngularJS bootstrap
+	    //×¢ï¿½â£ºï¿½â²»ï¿½ï¿½Twitter Bootstrapï¿½ï¿½ï¿½ï¿½ï¿½ï¿½AngularJS bootstrap
 	    'bootstrap',
-	    //Ëù´´½¨µÄËùÓĞ¿ØÖÆÆ÷¡¢·şÎñ¡¢Ö¸Áî¼°¹ıÂËÆ÷ÎÄ¼ş¶¼±ØĞëĞ´µ½ÕâÀï£¬Õâ¿éÄÚÈİ±ØĞëÊÖ¶¯Î¬»¤
+	    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ğ¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¸ï¿½î¼°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ğ´ï¿½ï¿½ï¿½ï¿½ï¿½ï£¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½İ±ï¿½ï¿½ï¿½ï¿½Ö¶ï¿½Î¬ï¿½ï¿½
 	    'controllers/controllers', 
 	    'services/services',
 		'directives/directives', 
