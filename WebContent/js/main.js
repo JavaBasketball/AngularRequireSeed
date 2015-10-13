@@ -6,7 +6,8 @@ require.config({
     paths: {
         'angular': '../lib/angular/angular',
         'angular-route': '../lib/angular-route/angular-route',
-        'domReady': '../lib/requirejs-domready/domReady'
+        'domReady': '../lib/requirejs-domready/domReady',
+        'uigridcss': '',
     },
     // "map"告诉RequireJS在任何模块之前，都先载入这个模块
     map: {
