@@ -4,20 +4,27 @@
 require.config({
 
     paths: {
+    	'jquery': '../lib/jquery/jquery-2.1.4',
         'angular': '../lib/angular/angular',
         'angular-route': '../lib/angular-route/angular-route',
         'domReady': '../lib/requirejs-domready/domReady',
-        'uigridcss': '',
+        'uigridless': '../lib/ui-grid/src/less/main',
     },
     // "map"告诉RequireJS在任何模块之前，都先载入这个模块
     map: {
     	'*': {
-    		'css': '../lib/require-css\css'
+    		'css': '../lib/require-css/css',
+    		'less': '../lib/require-less/less'
+    			
     	}
     },
     shim: {
+    	'jquery': {
+    		exports: '$'
+    	},
         'angular': {
-            exports: 'angular'
+            exports: 'angular',
+            deps: ['loadsh', 'jquery']
         },
         'angular-route': {
             deps: ['angular']
