@@ -8,6 +8,7 @@ require.config({
         'angular': '../lib/angular/angular',
         'angular-route': '../lib/angular-route/angular-route',
         'domReady': '../lib/requirejs-domready/domReady',
+        'bootstrapcss': '../lib/bootstrap-3.3.5-dist/css/bootstrap',
         'uigridless': '../lib/ui-grid/src/less/main',
     },
     // "map"告诉RequireJS在任何模块之前，都先载入这个模块
@@ -23,8 +24,8 @@ require.config({
     		exports: '$'
     	},
         'angular': {
-            exports: 'angular',
-            deps: ['loadsh', 'jquery']
+            exports: 'angular'
+            //deps: ['loadsh', 'jquery']
         },
         'angular-route': {
             deps: ['angular']
