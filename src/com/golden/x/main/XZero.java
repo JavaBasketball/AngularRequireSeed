@@ -23,6 +23,6 @@ public class XZero {
     }
 	  
 	public static void main(String[] args) {
-		transfer(987654302);
+		transfer(98765430);
 	}
 }
