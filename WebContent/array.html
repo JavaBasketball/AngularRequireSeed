@@ -1,0 +1,122 @@
+<!DOCTYPE HTML>
+<html>
+        <head>
+                <meta charset="utf-8"/>
+                <title>测试一</title>
+        </head>
+        <body>
+                <script type="text/javascript">
+                
+                
+/*                 1. 扩展 Array 方法 extProc，可以实现如下效果：["kitty","puppy","swan","penguin","giraffe","penguin","swan","dolphin"] => ["swan","giraffe","dolphin","penguin","puppy","kitty"]
+                根据数组中字符串的倒数第二个字符进行排序，且去除重复的部分。例：["kitty","puppy","swan","penguin","giraffe","penguin","swan","dolphin"].extProc() = ["swan","giraffe","dolphin","penguin","puppy","kitty"] */
+                        /*方法一*/
+                        Array.prototype.extProc1 = function() {
+                                var n = [];
+                                for(var i = 0; i < this.length; i++) {
+                                        //如果当前数组的第i已经保存进了临时数组，那么跳过，
+                                        //否则把当前项push到临时数组里面
+                                        if (n.indexOf(this) == -1) {
+                                                n.push(this);
+                                        }
+                                }
+                                return n;
+                        }
+                        /*方法二*/
+                        Array.prototype.extProc2 = function(){
+                                var n = [this[0]];
+                                for(var i = 1; i < this.length; i++) {
+                                        //如果当前数组的第i项在当前数组中第一次出现的位置不是i，
+                                        //那么表示第i项是重复的，忽略掉。否则存入结果数组
+                                        if (this.indexOf(this) == i) {
+                                                n.push(this);
+                                        }
+                                }
+                                return n;
+                        }
+                        /*方法三*/
+                        Array.prototype.extProc3 = function(){
+                                var n = {},r=[]; //n为hash表，r为临时数组
+                                for(var i = 0; i < this.length; i++) {
+                                        if (!n[this]) {
+                                                n[this] = true; //存入hash表
+                                                r.push(this); //把当前数组的当前项push到临时数组里面
+                                        }
+                                }
+                                return r;
+                        }
+                        /*方法四*/
+                        /*这个方法的思路是先把数组排序，然后比较相邻的两个值*/
+                        Array.prototype.extProc4 = function() {
+                                this.sort();
+                                var re=[this[0]];
+                                for(var i = 1; i < this.length; i++) {
+                                        if(this !== re[re.length-1]) {
+                                                re.push(this);
+                                        }
+                                }
+                                return re;
+                        }
+                        
+                        var initArr = ["kitty","puppy","swan","penguin","giraffe","penguin","swan","dolphin"];
+                        var newArr1 = initArr.extProc1(),
+                                newArr2 = initArr.extProc2(),
+                                newArr3 = initArr.extProc3();
+                        document.write("方法一效果:");
+                        document.write("<br/>");
+                        document.write("1.去重之前的数据: "+initArr.join());
+                        document.write("<br/>");
+                        document.write("2.去重之后的数据: "+newArr1);  
+                        document.write("<br/>");
+                        document.write("3.数组根据倒数第二个字符进行排序的数据: "+arrSort(newArr1));
+                        document.write("<br/><br/>");
+                        
+                        document.write("方法二效果:");
+                        document.write("<br/>");
+                        document.write("1.去重之前的数据: "+initArr.join());
+                        document.write("<br/>");
+                        document.write("2.去重之后的数据: "+newArr2);  
+                        document.write("<br/>");
+                        document.write("3.数组根据倒数第二个字符进行排序的数据: "+arrSort(newArr2));
+                        document.write("<br/><br/>");
+                        
+                        document.write("方法三效果:");
+                        document.write("<br/>");
+                        document.write("1.去重之前的数据: "+initArr.join());
+                        document.write("<br/>");
+                        document.write("2.去重之后的数据: "+newArr3);  
+                        document.write("<br/>");
+                        document.write("3.数组根据倒数第二个字符进行排序的数据: "+arrSort(newArr3));
+                        document.write("<br/><br/>"); 
+                        
+                        var newArr4 = initArr.extProc4();
+                        document.write("方法四效果:");
+                        document.write("<br/>");
+                        document.write("1.去重之前的数据: "+initArr.join());
+                        document.write("<br/>");
+                        document.write("2.去重之后的数据: "+initArr.extProc4());  
+                        document.write("<br/>");
+                        document.write("3.数组根据倒数第二个字符进行排序的数据: "+arrSort(newArr4));
+                        document.write("<br/><br/>"); 
+                        
+                        function arrSort(arr){
+                                var surpStr = [], secSubStr = [];
+                                var mosaicStr = [], endStr = [], moSort=[];
+                                for(var i=0; i<arr.length; i++){
+                                        var strLen = arr.length;
+                                        surpStr = arr.slice(0,strLen-2);
+                                        secSubStr = arr.slice(-2);
+                                        mosaicStr = secSubStr + surpStr;
+                                }
+                                moSort = mosaicStr.sort();
+                                for(var j=0; j<moSort.length; j++){
+                                        var strLen = moSort[j].length;
+                                        secSubStr[j] = moSort[j].slice(0,2);
+                                        surpStr[j] = moSort[j].slice(2,strLen);
+                                        endStr[j] = surpStr[j] + secSubStr[j];
+                                }
+                                return endStr;
+                        }
+                </script>
+        </body>
+</html>
