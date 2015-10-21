@@ -22,7 +22,8 @@ public class XZero {
         }
         
         String temp = output.toString();
-        String result = temp.replace("十零", "十").replace("百零零", "百");
+        //String result = temp.replace("十零", "十").replace("百零零", "百");
+        String result = temp;
         System.out.println(result);
     }
 	  
