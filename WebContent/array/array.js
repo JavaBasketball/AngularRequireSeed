@@ -15,40 +15,47 @@
                         }
                         
                         // 截取倒数第二位，重新组装数组
-                        Array.prototype.reverseSecond = function(flag){
+                          var reverseSecond = function(array,flag){
                         	var secondArray = [];
                         	var firstStr = "";
                         	var secondStr = "";
                         	// 截取倒数第二位
                         	if(flag){
-	                        	for (var i = 0; i < this.length; i++) {
-	                        		firstStr = this[i].substr(0, this[i].length-2);
-	                        		secondStr = this[i].substr(this[i].length-2);
+	                        	for (var i = 0; i < array.length; i++) {
+	                        		firstStr = array[i].substr(0, array[i].length-2);
+	                        		secondStr = array[i].substr(array[i].length-2);
 	                        		secondArray[i] = secondStr + firstStr;
 								}
                         	}
                         	// 截取顺数第二位
                         	else {
-	                        	for (var i = 0; i < this.length; i++) {
-	                        		firstStr = this[i].substr(0, 2);
-	                        		secondStr = this[i].substr(2,this[i].length-1);
+	                        	for (var i = 0; i < array.length; i++) {
+	                        		firstStr = array[i].substr(0, 2);
+	                        		secondStr = array[i].substr(2,array[i].length-1);
 	                        		secondArray[i] = secondStr + firstStr;
 								}
                         	}
+                        	return secondArray;
                         }
                         
                         // 安排
                         Array.prototype.extProc = function(){
                         	// 去重
-                        	this.removeDuplicate();
+                        	var rdArray = this.removeDuplicate();
                         	// 截取倒数第二位
-                        	this.reverseSecond(true);
+                        	var tempaArray = reverseSecond(rdArray, true);
+                        	// 排序
+                        	//tempaArray.sort();
                         	// 截取顺数第二位
-                        	this.reverseSecond(false);
+                        	return reverseSecond(tempaArray.sort(),false);
                         	
-                        	return this.sort();
+//                        	return this.sort();
                         }
                         
                         
                         var initArr = ["kitty","puppy","swan","penguin","giraffe","penguin","swan","dolphin"];
-                        initArr.extProc();
+                        var resultArr = initArr.extProc();
+                        document.write("排序之前：" + initArr);
+                        document.write("<br/>");
+                        document.write("排序之后：" + resultArr);
+//                        alert("排序之前：" + initArr + "/n 排序之后：" + resultArr);
