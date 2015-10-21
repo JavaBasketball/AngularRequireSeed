@@ -10,58 +10,63 @@
                 
 /*                 1. 扩展 Array 方法 extProc，可以实现如下效果：["kitty","puppy","swan","penguin","giraffe","penguin","swan","dolphin"] => ["swan","giraffe","dolphin","penguin","puppy","kitty"]
                 根据数组中字符串的倒数第二个字符进行排序，且去除重复的部分。例：["kitty","puppy","swan","penguin","giraffe","penguin","swan","dolphin"].extProc() = ["swan","giraffe","dolphin","penguin","puppy","kitty"] */
-                        /*方法一*/
-                        Array.prototype.extProc1 = function() {
-                                var n = [];
-                                for(var i = 0; i < this.length; i++) {
-                                        //如果当前数组的第i已经保存进了临时数组，那么跳过，
-                                        //否则把当前项push到临时数组里面
-                                        if (n.indexOf(this) == -1) {
-                                                n.push(this);
-                                        }
-                                }
-                                return n;
-                        }
-                        /*方法二*/
-                        Array.prototype.extProc2 = function(){
-                                var n = [this[0]];
-                                for(var i = 1; i < this.length; i++) {
-                                        //如果当前数组的第i项在当前数组中第一次出现的位置不是i，
-                                        //那么表示第i项是重复的，忽略掉。否则存入结果数组
-                                        if (this.indexOf(this) == i) {
-                                                n.push(this);
-                                        }
-                                }
-                                return n;
-                        }
-                        /*方法三*/
-                        Array.prototype.extProc3 = function(){
-                                var n = {},r=[]; //n为hash表，r为临时数组
-                                for(var i = 0; i < this.length; i++) {
-                                        if (!n[this]) {
-                                                n[this] = true; //存入hash表
-                                                r.push(this); //把当前数组的当前项push到临时数组里面
-                                        }
-                                }
-                                return r;
-                        }
-                        /*方法四*/
-                        /*这个方法的思路是先把数组排序，然后比较相邻的两个值*/
-                        Array.prototype.extProc4 = function() {
-                                this.sort();
-                                var re=[this[0]];
-                                for(var i = 1; i < this.length; i++) {
-                                        if(this !== re[re.length-1]) {
-                                                re.push(this);
-                                        }
-                                }
-                                return re;
+
+                        
+                        // 去掉重复
+                        Array.prototype.removeDuplicate = function(){
+                        	var result = []
+                        	for (var i = 0; i < this.length; i++) {
+								 if(result.indexOf(this) == -1){
+									 result.push(this);
+								 }
+								
+							}
+                        	return result;
                         }
                         
+                        // 截取倒数第二位，重新组装数组
+                        Array.prototype.reverseSecond = function(flag){
+                        	var secondArray = [];
+                        	var firstStr = "";
+                        	var secondStr = "";
+                        	// 截取倒数第二位
+                        	if(flag){
+	                        	for (var i = 0; i < this.length; i++) {
+	                        		firstStr = this[i].substr(0, this[i].length-2);
+	                        		secondStr = this[i].substr(this[i].length-2);
+	                        		secondArray[i] = secondStr + firstStr;
+								}
+                        	}
+                        	// 截取顺数第二位
+                        	else {
+	                        	for (var i = 0; i < this.length; i++) {
+	                        		firstStr = this[i].substr(0, 2);
+	                        		secondStr = this[i].substr(2,this[i].length-1);
+	                        		secondArray[i] = secondStr + firstStr;
+								}
+                        	}
+                        }
+                        
+                        // 安排
+                        Array.prototype.extProc = function(){
+                        	// 去重
+                        	this.removeDuplicate();
+                        	// 截取倒数第二位
+                        	this.reverseSecond(true);
+                        	// 截取顺数第二位
+                        	this.reverseSecond(false);
+                        	
+                        	return this.sort();
+                        }
+                        
+                        
                         var initArr = ["kitty","puppy","swan","penguin","giraffe","penguin","swan","dolphin"];
-                        var newArr1 = initArr.extProc1(),
-                                newArr2 = initArr.extProc2(),
-                                newArr3 = initArr.extProc3();
+                        initArr.extProc();
+/*                         var newArr1 = initArr.extProc1(),
+                            newArr2 = initArr.extProc2(),
+                            newArr3 = initArr.extProc3();
+                        
+                        
                         document.write("方法一效果:");
                         document.write("<br/>");
                         document.write("1.去重之前的数据: "+initArr.join());
@@ -116,7 +121,7 @@
                                         endStr[j] = surpStr[j] + secSubStr[j];
                                 }
                                 return endStr;
-                        }
+                        } */
                 </script>
         </body>
 </html>
